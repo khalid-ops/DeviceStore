@@ -3,7 +3,7 @@
 <div>
     <h2>Sims
     </h2>
-    <button class="btn btn-primary" style="margin-left:1200px" @click="toAddform()">Add</button>
+    <button class="btn btn-primary" style="margin-left:1200px" v-show="showAddSims" @click="toAddform()">Add</button>
     <table class="table table-striped-columns">
         <thead>
         <tr>
@@ -41,6 +41,7 @@ export default {
     data (){
         return{
             sims : [],
+            showAddSims:false
         }
     },
     components: {
@@ -87,7 +88,9 @@ export default {
             this.$router.push({name:"SignUp"})
         }
         this.fetchSims();
-
+        if(localStorage.getItem("userId")==="3"){
+            this.showAddSims = true;
+        }
     }
 
 }

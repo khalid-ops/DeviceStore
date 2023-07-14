@@ -3,7 +3,7 @@
 <div>
     <h2>Devices
     </h2>
-    <button class="btn btn-primary" style="margin-left:1200px" @click="toAddform()">Add</button>
+    <button class="btn btn-primary" style="margin-left:1200px" v-show="showAddDevice" @click="toAddform()">Add</button>
     <table class="table table-striped-columns">
         <thead>
         <tr>
@@ -43,6 +43,7 @@ export default {
     data (){
         return{
             devices : [],
+            showAddDevice:false
         }
     },
     components: {
@@ -89,7 +90,9 @@ export default {
             this.$router.push({name:"SignUp"})
         }
         this.fetchDevices();
-
+        if(localStorage.getItem("userId")==="3"){
+            this.showAddDevice = true;
+        }
     }
 
 }

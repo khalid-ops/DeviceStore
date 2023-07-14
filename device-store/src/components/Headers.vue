@@ -3,8 +3,8 @@
         <router-link to="/">Home</router-link>
         <router-link to="/devices">Devices</router-link>
         <router-link to="/sims">Sims</router-link>
-        <router-link to="/companies">Companies</router-link>
-        <router-link to="/display">Customers</router-link>
+        <router-link to="/companies" v-show="showCompaniesCustomers">Companies</router-link>
+        <router-link to="/display" v-show="showCompaniesCustomers">Customers</router-link>
         <button v-on:click="logout()">Logout</button>
     </div>
 </template>
@@ -13,6 +13,11 @@
 import axios from 'axios'
 export default {
     name : 'HeaderBar',
+    data(){
+        return{
+            showCompaniesCustomers:false
+        }
+    },
     methods : {
         logout() {
             let data = {
@@ -35,6 +40,11 @@ export default {
         })
 
         } // TODO: Implement Logout functionality.
+    },
+    mounted(){
+        if(localStorage.getItem("userId") === "3"){
+            this.showCompaniesCustomers = true
+        }
     }
 }
 </script>
